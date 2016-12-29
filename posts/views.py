@@ -54,7 +54,7 @@ class PostListQuerySet(object):  # crea la queryset con el listado de artículos
         elif user.is_authenticated() and not user.is_superuser:  # si está autenticado y no es superusuario ve todos los publicados y los suyos no publicados
             possible_posts = possible_posts.filter(
                 Q(publication_date=date_now, publication_time__lte=time_now) | Q(owner=user))
-        elif user.is_authenticated() and user.is_superuser:# y si está autenticado y es superusuario, entonces devuelverá todos
+        elif user.is_authenticated() and user.is_superuser:  # y si está autenticado y es superusuario, entonces devuelverá todos
             possible_posts = Post.objects.all()
 
         return possible_posts.order_by('-publication_at')  # possible_post es una queryset
@@ -67,12 +67,6 @@ class PostDetail(View):
         :param request: objeto httpRequest con los datos de la petición
         :return: objeto httpResponse con los datos de la respuesta
         """
-        date_now = strftime("%Y-%m-%d", localtime())
-        time_now = strftime("%H:%M:%S", localtime())
-
-        # possible_post = Post.objects.all().filter(
-        #     Q(publication_date=date_now, publication_time__lte=time_now, pk=pk) | Q(publication_date__lt=date_now,
-        #                                                                             pk=pk))
 
         possible_post = PostListQuerySet.get_posts_by_user(request.user).filter(pk=pk)
 
@@ -115,9 +109,7 @@ class PostCreationView(View):
         post_with_user = Post(owner=request.user)
         post_form = PostCreationForm(request.POST, instance=post_with_user)
 
-
         complete_date = request.POST.get("publication_date") + " " + request.POST.get("publication_time")
-
 
         validate_date = datetime.strptime(complete_date, "%Y-%m-%d %H:%M")
 

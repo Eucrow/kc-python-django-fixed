@@ -21,20 +21,16 @@ class PostListAPI(ListCreateAPIView):
     ordering_fields = ('title', 'publication_at')
     search_fields = ('title', 'content')
 
-
     def get_queryset(self):
-
         posts_by_user = PostListQuerySet.get_posts_by_user(user=self.request.user)
         queryset = posts_by_user
 
         return queryset
 
-
     # sobreescribimos el método get_serializer_class para que haga lo que nosotros deseamos,
     # en este caso devuelve PostSerializer si el método es POST o PostListSerializer si no.
     def get_serializer_class(self):
         return PostSerializer if self.request.method == 'POST' else PostListSerializer
-
 
     def perform_create(self, serializer):  # obligamos a que se guarde el post con el usuario que
         # está autenticado cuando se está creando uno nuevo
