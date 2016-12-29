@@ -29,12 +29,6 @@ class Home(View):
         Returns: objeto HttpResponse con los datos de la respuesta
 
         """
-        # recupera todos los posts de la base de datos
-        #date_now = strftime("%Y-%m-%d", localtime())
-        #time_now = strftime("%H:%M:%S", localtime())
-        #posts = Post.objects.all().filter(
-        #    Q(publication_date=date_now, publication_time__lte=time_now) | Q(publication_date__lt=date_now)).order_by(
-        #    '-created_at')
 
         posts = PostListQuerySet.get_posts_by_user(request.user)
 
@@ -56,12 +50,14 @@ class PostListQuerySet(object):  # crea la queryset con el listado de artículos
         possible_posts = Post.objects.all().select_related("owner")
         if not user.is_authenticated():  # si no está autenticado, puede ver sólo aquellos ya publicados
             possible_posts = possible_posts.filter(
-                Q(publication_date=date_now, publication_time__lte=time_now) | Q(publication_date__lt=date_now)).order_by('publication_at')
+                Q(publication_date=date_now, publication_time__lte=time_now) | Q(publication_date__lt=date_now))
         elif user.is_authenticated() and not user.is_superuser:  # si está autenticado y no es superusuario ve todos los publicados y los suyos no publicados
             possible_posts = possible_posts.filter(
-                Q(publication_date=date_now, publication_time__lte=time_now) | Q(owner=user)).order_by('publication_at')
+                Q(publication_date=date_now, publication_time__lte=time_now) | Q(owner=user))
         elif user.is_authenticated() and user.is_superuser:# y si está autenticado y es superusuario, entonces devuelverá todos
-            return possible_posts.order_by('publication_at')  # possible_post es una queryset
+            possible_posts = Post.objects.all()
+
+        return possible_posts.order_by('-publication_at')  # possible_post es una queryset
 
 
 class PostDetail(View):
