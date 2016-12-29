@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    <a name="begin"></a>
+    <section class="container-section">
+        {% if messages %}
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+        {% endif %}
+
+        <article class="container-article" name="begin">
+            <img class="article-picture" alt="{{ post.title }}" src="{{ post.url }}">
+            <div class="article-title">{{ post.title }}</div>
+            <div class="article-introduction">{{ post.content }}</div>
+            <div class="article-social clearfix">
+                <div class="article-social left">
+                    <div class="article-social-avatar icon-placeholder clearfix"></div>
+                </div>
+                <div class="article-social right">
+                    <div class="article-social-likes icon-heart" data-id="{{ post.pk }}"></div>
+                    <div class="article-social-comments"><div class="number-of-comments"></div></div>
+                </div>
+                <div class="article-social center">
+                    <div class="article-social-name">{{ post.owner }}</div>
+                    <div class="article-social-fecha"><time datetime="{{ post.created_at }}">{{ post.created_at }}tiempo</time></div>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <section class="comments" >
+        <div class="list-comments" id="comments">
+        </div>
+
+        <form class="new-comment-form" id="add-new-comment" novalidate="">
+                    <div>
+                        <!-- <label for="name">Name:</label> -->
+                        <input type="text" id="name" name="name" placeholder="Nombre" required>
+                    </div>
+                    <div>
+                        <!-- <label for="surname">Surname:</label> -->
+                        <input type="text" id="surname" name="surname" placeholder="Apellidos" required>
+                    </div>
+                    <div>
+                        <!-- <label for="email">Email:</label> -->
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div>
+                        <!-- <label for="comment">Comment:</label> -->
+                        <textarea name="comment" id="comment" rows="8" placeholder="Comentario" required></textarea>
+                    </div>
+                    <button>Envía tu comentario</button>
+                </form>
+    </section>
+{% endblock %}

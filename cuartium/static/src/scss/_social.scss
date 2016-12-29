@@ -1,0 +1,6 @@
+.icon-heart {
+  @include sprite($icon-heart);
+}
+.icon-heart-blue {
+  @include sprite($icon-heart-blue);
+}

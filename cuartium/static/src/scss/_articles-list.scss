@@ -1,0 +1,76 @@
+article{
+    // width: 95vw;
+
+    margin: 10px auto;
+    padding: 10px;
+    // box-shadow: 0 14px 10px -15px $color-blue;
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-color: $color-light-green;
+    font-size: $font-size-base;
+    line-height: 1.5em;
+
+    .article-picture{
+        display: block;
+        max-width: 600px;
+        width: 100%;
+        padding: 20px 0;
+        margin: 0 auto;
+
+        @include if-is-tablet{
+            max-width: 736px;
+        }
+
+        @include if-is-desktop{
+            max-width: 736px;
+        }
+    }
+
+    .article-title{
+        font-family: $secondary-font-family;
+        font-size: $font-size-h3;
+        font-weight: 500;
+        line-height: 3rem;
+        padding: 0 0 10px 0;
+        a{
+            text-decoration: none;
+            color: $color-green;
+            &:hover{
+                color: $color-dark-blue;
+            }
+        }
+    }
+
+    .article-introduction{
+        padding: 0 0 10px 0;
+    }
+
+    .article-social{
+        padding-top: 8px;
+        font-size: $font-size-smallest;
+        line-height: 1.5rem;
+        .right{
+            float: right;
+            text-align: right;
+        }
+        .left{
+            float: left;
+        }
+        .center{
+            display: inline-block;
+            padding-left: 10px;
+        }
+        .article-social-avatar{
+            width: $icon-placeholder-width;
+            height: $icon-placeholder-height;
+            margin-right: 5px;
+        }
+        .article-social-likes{
+            display: inline-block;
+        }
+    }
+}
+
+.icon-placeholder {
+  @include sprite($icon-placeholder);
+}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ posts_list.owner }}
+{% endblock %}
+{% block body %}
+    <section class="container-section">
+        <h1 class="container-title">Blog de {{ posts_owner }}</h1>
+            {% if posts_list|length > 0 %}
+                {% for post in posts_list %}
+                <article class="container-article" id="{{ post.pk }}">
+                    <img class="article-picture" alt="{{ post.title }}" src="{{ post.url }}"
+{#                                                                 srcset="#}
+{#                                                                 dist/uploads/tomillo_1280.jpg 736w,#}
+{#                                                                 dist/uploads/tomillo_800.jpg 736w,#}
+{#                                                                 dist/uploads/tomillo_400.jpg 400w#}
+{#                                                                 "#}
+                    >
+                    <div class="article-title"><a href="/posts/{{ post.pk }}">{{ post.title }}</a></div>
+                    <div class="article-introduction">
+                        <p>{{ post.introduction }}</p>
+                    </div>
+                    <div class="article-social clearfix">
+                        <div class="article-social left">
+                            <div class="article-social-avatar icon-placeholder clearfix"></div>
+                        </div>
+                        <div class="article-social right">
+                            <div class="article-social-likes icon-heart" data-id="{{ post.pk }}"></div>
+                            <div class="article-social-comments"><a href="/posts/{{ post.pk }}#comments" class="number-of-comments"></a></div>
+                        </div>
+                        <div class="article-social center">
+                            <div class="article-social-name">{{ post.owner }}</div>
+                            <div class="article-social-fecha"><time datetime="{{ post.created_at }}">{{ post.created_at }} tiempo</time></div>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            {% else %}
+            <p>{{ posts_owner }} no tiene ningún artículo todavía :(</p>
+            {% endif %}
+
+        </div>
+    </section>
+{% endblock %}

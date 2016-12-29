@@ -1,0 +1,44 @@
+h1{
+    font-size: $font-size-h1;
+}
+h2{
+    font-size: $font-size-h2;
+}
+h3{
+    font-size: $font-size-h3;
+}
+h4{
+    font-size: $font-size-h4;
+}
+h5{
+    font-size: $font-size-h5;
+}
+h6{
+    font-size: $font-size-h6;
+}
+
+body{
+    font-family: $main-font-family;
+    font-size: $font-size-base;
+    line-height: 1em;
+    @include if-is-tablet{
+        font-size: $font-size-tablet;
+    }
+}
+
+ul{
+    list-style-type: none;
+}
+
+li{
+    padding-bottom: 5px;    
+}
+
+a{
+    text-decoration:none;
+    color:$color-green;
+}
+a:hover{
+    text-decoration:none;
+    color:$color-blue;
+}

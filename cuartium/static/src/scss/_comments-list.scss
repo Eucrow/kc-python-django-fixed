@@ -1,0 +1,57 @@
+.comments{
+    padding: 30px 10px 10px 10px;
+    margin: auto;
+
+
+    @include if-is-tablet{
+        max-width: $max-width-comments;
+
+    }
+
+    @include if-is-desktop{
+        max-width: $max-width-comments;
+
+    }
+}
+
+.article-social-comments{
+    a,
+    a:link,
+    a:visited {
+        text-decoration: none;
+        font-weight: 600;
+        color: $color-blue;
+    }
+
+}
+
+.comment{
+    font-size: $font-size-small;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: $color-light-blue;
+    // box-shadow: 0 14px 10px -15px $color-blue;
+    border-left: solid;
+    border-left-width: 1px;
+    border-color: $color-light-green;
+
+    .comment-text{
+        padding-left: 15px;
+    }
+
+    .comment-personal-data{
+        width: 100%;
+        text-align: right;
+
+        .comment-name,
+        .comment-surname{
+            font-size: $font-size-smallest;
+            display:inline;
+            width: 100%;
+        }
+
+        .comment-name::after{
+            content: " ";
+        }
+    }
+}

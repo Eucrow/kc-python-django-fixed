@@ -1,0 +1,38 @@
+.container{
+    width:100%;
+
+    @include if-is-desktop{
+        max-width: $max-width-desktop;
+    }
+}
+
+.container-section{
+    padding-top: $distance-header;
+
+    article{
+        // box-shadow: none;
+    }
+
+    @include if-is-tablet{
+        padding-top: $distance-header-tablet;
+    }
+
+    @include if-is-desktop{
+        max-width: $max-width-desktop;
+    }
+
+
+    .container-title{
+        font-family: $secondary-font-family;
+        padding-bottom: 20px;
+    }
+
+    .container-article{
+        max-width:100%;
+    }
+
+    .container-article_strait{
+        max-width:600px;
+        margin: auto;
+    }
+}

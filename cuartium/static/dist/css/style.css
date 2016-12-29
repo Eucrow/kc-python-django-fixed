@@ -1,0 +1,507 @@
+@charset "UTF-8";
+/*RESET*/
+header, body, footer, ul, h1, p {
+  padding: 0px;
+  margin: 0px auto; }
+
+.icon {
+  display: inline-block; }
+
+* {
+  /*bxz*/
+  /*el tamaño de la caja incluye margin y border*/
+  box-sizing: border-box; }
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table; }
+
+.clearfix:after {
+  clear: both; }
+
+.container {
+  width: 100%; }
+  @media all and (min-width: 737px) {
+    .container {
+      max-width: 1200px; } }
+
+.container-section {
+  padding-top: 80px; }
+  @media all and (min-width: 736px) {
+    .container-section {
+      padding-top: 150px; } }
+  @media all and (min-width: 737px) {
+    .container-section {
+      max-width: 1200px; } }
+  .container-section .container-title {
+    font-family: "Aref Ruqaa", serif;
+    padding-bottom: 20px; }
+  .container-section .container-article {
+    max-width: 100%; }
+  .container-section .container-article_strait {
+    max-width: 600px;
+    margin: auto; }
+
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+h1 {
+  font-size: 36px; }
+
+h2 {
+  font-size: 33px; }
+
+h3 {
+  font-size: 30px; }
+
+h4 {
+  font-size: 27px; }
+
+h5 {
+  font-size: 24px; }
+
+h6 {
+  font-size: 21px; }
+
+body {
+  font-family: "Prompt", sans-serif;
+  font-size: 21px;
+  line-height: 1em; }
+  @media all and (min-width: 736px) {
+    body {
+      font-size: 23px; } }
+
+ul {
+  list-style-type: none; }
+
+li {
+  padding-bottom: 5px; }
+
+a {
+  text-decoration: none;
+  color: #4F5902; }
+
+a:hover {
+  text-decoration: none;
+  color: #7EBFD9; }
+
+form {
+  width: 100%;
+  padding: 20px 0px;
+  text-align: center; }
+  form input,
+  form textarea {
+    padding: 5px;
+    margin: 5px;
+    background-color: #eeeeee;
+    border-style: none;
+    width: 400px;
+    font-family: "Prompt", sans-serif; }
+  form ::-webkit-input-placeholder {
+    font-size: 15px;
+    color: #4F5902; }
+  form :-moz-placeholder {
+    /* Firefox 18- */
+    font-size: 15px;
+    color: #4F5902; }
+  form ::-moz-placeholder {
+    /* Firefox 19+ */
+    font-size: 15px;
+    color: #4F5902; }
+  form :-ms-input-placeholder {
+    font-size: 15px;
+    color: #4F5902; }
+  form .as-input {
+    padding: 5px;
+    margin: 5px auto 10px auto;
+    background-color: #eeeeee;
+    border-style: none;
+    width: 400px;
+    font-family: "Prompt", sans-serif; }
+  form .as-placeholder {
+    font-size: 15px;
+    color: #898C27;
+    vertical-align: top; }
+  form button {
+    background-color: #eeeeee;
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px; }
+    form button:hover {
+      background-color: #FFFFFF; }
+
+form.search-form button {
+  background-color: #7EBFD9;
+  border: none;
+  padding: 0px;
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle; }
+
+form.search-form input {
+  height: 24px; }
+
+form.search-form input.search-input {
+  margin: 0 0 5px 0;
+  max-width: 100px;
+  border: 0px; }
+
+header {
+  position: fixed;
+  width: 100%;
+  background-color: #7EBFD9;
+  top: 0px;
+  height: 4rem; }
+  @media all and (min-width: 737px) {
+    header {
+      max-width: 1200px; } }
+  header .header-title {
+    padding: 20px 0 0 10px;
+    color: #4F5902;
+    font-family: "Aref Ruqaa", serif;
+    display: inline-block;
+    float: left; }
+    header .header-title a {
+      color: #4F5902;
+      text-decoration: none; }
+  header .search {
+    display: inline-block;
+    float: right;
+    padding: 0px 5px 0 0; }
+    @media all and (min-width: 736px) {
+      header .search {
+        display: inline-block;
+        padding: 20px 10px 0 0;
+        float: right; } }
+    @media all and (min-width: 737px) {
+      header .search {
+        display: inline-block;
+        padding: 0 10px 0 0;
+        float: right; } }
+
+.open, .close {
+  border: none;
+  background: none;
+  float: right;
+  width: 45px;
+  line-height: 45px;
+  padding: 22px 15px 0px 15px;
+  cursor: pointer;
+  outline: none;
+  z-index: 10000000000000; }
+  @media all and (min-width: 736px) {
+    .open, .close {
+      display: none; } }
+
+.close {
+  cursor: pointer;
+  display: none;
+  z-index: 10000000000000; }
+  @media all and (min-width: 736px) {
+    .close {
+      display: none; } }
+
+.menu {
+  z-index: 1000000;
+  font-weight: 500;
+  color: #FFFFFF;
+  background: #7EBFD9;
+  position: fixed;
+  top: 4rem;
+  right: 0px;
+  text-align: right;
+  border-left: #7EBFD9 2px solid;
+  display: none;
+  padding-bottom: 10px; }
+  @media all and (min-width: 736px) {
+    .menu {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      line-height: 2.5rem;
+      width: 100%;
+      font-size: 23px;
+      right: auto;
+      padding-bottom: 0px; }
+      .menu .themes {
+        text-align: left; }
+      .menu .identification {
+        text-align: right; } }
+  @media all and (min-width: 737px) {
+    .menu {
+      max-width: 1200px;
+      right: auto; } }
+  .menu ul {
+    list-style-type: none;
+    list-style-image: none;
+    font-family: "Aref Ruqaa", serif; }
+    @media all and (min-width: 736px) {
+      .menu ul {
+        display: inline;
+        margin: 0px; } }
+  .menu ul li {
+    display: block;
+    padding: 5px 10px 5px 10px; }
+    @media all and (min-width: 736px) {
+      .menu ul li {
+        display: inline;
+        padding: 5px 10px 0 10px; } }
+  .menu li:hover {
+    color: #4F5902; }
+  .menu li.menu-inverse:hover {
+    background: #7EBFD9; }
+  .menu a {
+    text-decoration: none;
+    color: #FFFFFF; }
+  .menu a:hover {
+    text-decoration: none;
+    color: #FFFFFF; }
+
+.icon-search {
+  background-image: url(../img/sprite.png);
+  background-position: -50px 0px;
+  width: 25px;
+  height: 25px; }
+  .icon-search::after {
+    content: "\00a0"; }
+
+.icon-menu-open {
+  background-image: url(../img/sprite.png);
+  background-position: 0px -49px;
+  width: 24px;
+  height: 24px; }
+  .icon-menu-open::after {
+    content: "\00a0"; }
+
+.icon-menu-close {
+  background-image: url(../img/sprite.png);
+  background-position: -50px -25px;
+  width: 24px;
+  height: 24px; }
+  .icon-menu-close::after {
+    content: "\00a0"; }
+
+article {
+  margin: 10px auto;
+  padding: 10px;
+  border-bottom: solid;
+  border-bottom-width: 1px;
+  border-color: #898C27;
+  font-size: 21px;
+  line-height: 1.5em; }
+  article .article-picture {
+    display: block;
+    max-width: 600px;
+    width: 100%;
+    padding: 20px 0;
+    margin: 0 auto; }
+    @media all and (min-width: 736px) {
+      article .article-picture {
+        max-width: 736px; } }
+    @media all and (min-width: 737px) {
+      article .article-picture {
+        max-width: 736px; } }
+  article .article-title {
+    font-family: "Aref Ruqaa", serif;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 3rem;
+    padding: 0 0 10px 0; }
+    article .article-title a {
+      text-decoration: none;
+      color: #4F5902; }
+      article .article-title a:hover {
+        color: #010A26; }
+  article .article-introduction {
+    padding: 0 0 10px 0; }
+  article .article-social {
+    padding-top: 8px;
+    font-size: 15px;
+    line-height: 1.5rem; }
+    article .article-social .right {
+      float: right;
+      text-align: right; }
+    article .article-social .left {
+      float: left; }
+    article .article-social .center {
+      display: inline-block;
+      padding-left: 10px; }
+    article .article-social .article-social-avatar {
+      width: 50px;
+      height: 49px;
+      margin-right: 5px; }
+    article .article-social .article-social-likes {
+      display: inline-block; }
+
+.icon-placeholder {
+  background-image: url(../img/sprite.png);
+  background-position: 0px 0px;
+  width: 50px;
+  height: 49px; }
+
+.new-comment-form {
+  display: none;
+  width: 100%;
+  padding: 20px 0px;
+  text-align: center; }
+  .new-comment-form input,
+  .new-comment-form textarea {
+    padding: 5px;
+    margin: 5px;
+    background-color: #eeeeee;
+    border-style: none;
+    width: 300px;
+    font-family: "Prompt", sans-serif; }
+  .new-comment-form ::-webkit-input-placeholder {
+    font-size: 15px;
+    color: #4F5902; }
+  .new-comment-form :-moz-placeholder {
+    /* Firefox 18- */
+    font-size: 15px;
+    color: #4F5902; }
+  .new-comment-form ::-moz-placeholder {
+    /* Firefox 19+ */
+    font-size: 15px;
+    color: #4F5902; }
+  .new-comment-form :-ms-input-placeholder {
+    font-size: 15px;
+    color: #4F5902; }
+  .new-comment-form button {
+    background-color: #eeeeee;
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px; }
+    .new-comment-form button:hover {
+      background-color: #FFFFFF; }
+
+.comments {
+  padding: 30px 10px 10px 10px;
+  margin: auto; }
+  @media all and (min-width: 736px) {
+    .comments {
+      max-width: 800px; } }
+  @media all and (min-width: 737px) {
+    .comments {
+      max-width: 800px; } }
+
+.article-social-comments a,
+.article-social-comments a:link,
+.article-social-comments a:visited {
+  text-decoration: none;
+  font-weight: 600;
+  color: #7EBFD9; }
+
+.comment {
+  font-size: 18px;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #E6F2F6;
+  border-left: solid;
+  border-left-width: 1px;
+  border-color: #898C27; }
+  .comment .comment-text {
+    padding-left: 15px; }
+  .comment .comment-personal-data {
+    width: 100%;
+    text-align: right; }
+    .comment .comment-personal-data .comment-name,
+    .comment .comment-personal-data .comment-surname {
+      font-size: 15px;
+      display: inline;
+      width: 100%; }
+    .comment .comment-personal-data .comment-name::after {
+      content: " "; }
+
+.icon-heart {
+  background-image: url(../img/sprite.png);
+  background-position: -44px -49px;
+  width: 20px;
+  height: 20px; }
+
+.icon-heart-blue {
+  background-image: url(../img/sprite.png);
+  background-position: -24px -49px;
+  width: 20px;
+  height: 20px; }
+
+.bold {
+  font-weight: 900; }
+
+.italic {
+  font-style: italic; }
+
+footer {
+  width: 100%;
+  background-color: #7EBFD9;
+  vertical-align: bottom;
+  margin-top: 20px; }
+  footer .footer-title {
+    font-family: "Aref Ruqaa", serif;
+    font-size: 36px;
+    font-weight: bold;
+    color: #4F5902;
+    display: inline-block;
+    padding: 12px 0 15px 5px; }
+  footer .copyright {
+    width: 100%;
+    text-align: center;
+    font-size: 15px; }
+
+.icon-up {
+  background-image: url(../img/sprite.png);
+  background-position: -75px 0px;
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin: 12px 10px 0 0; }
+
+/*# sourceMappingURL=style.css.map */

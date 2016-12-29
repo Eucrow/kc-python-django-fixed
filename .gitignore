@@ -1,0 +1,21 @@
+#nodejs files
+/node_modules
+
+#sparrest
+server.py
+/db
+
+#original images
+/src/img/originals
+
+#virtual enviroment
+env/
+
+#database
+db.sqlite3
+
+#pycharm (opciones del proyecto de pycharm)
+.idea
+
+#python bytecode files  (archivos precompilados de python)
+*.pyc

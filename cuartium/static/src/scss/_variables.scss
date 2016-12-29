@@ -1,0 +1,42 @@
+// Font families
+$main-font-family: "Prompt", sans-serif;
+$secondary-font-family: 'Aref Ruqaa', serif;
+
+// Font sizes:
+$font-size-base: 21px;
+$font-size-small: $font-size-base - 3px;
+$font-size-smallest: $font-size-base - 6px;
+$font-size-large: $font-size-base + 6px;
+$font-size-h1: $font-size-base +15px;
+$font-size-h2: $font-size-base +12px;
+$font-size-h3: $font-size-base +9px;
+$font-size-h4: $font-size-base +6px;
+$font-size-h5: $font-size-base +3px;
+$font-size-h6: $font-size-base;
+
+$font-size-tablet: $font-size-base + 2px;
+$font-size-menu-tablet: $font-size-base + 2px;
+
+// Base Colors:
+$color-white: #FFFFFF;
+$color-light-grey: #eeeeee;
+$color-black: #000000;
+$color-light-green: #898C27;
+$color-green: #4F5902;
+$color-dark-green: #1E2601;
+$color-light-blue: #E6F2F6;
+$color-blue: #7EBFD9;
+$color-dark-blue: #010A26;
+
+//distances
+$distance-header: 80px;
+$distance-header-tablet: 150px;
+
+// Responsive variables
+$tablet-width: 737px;
+$phone-width: $tablet-width - 1px;
+
+// Responsive widths
+$max-width-desktop: 1200px;
+
+$max-width-comments: 800px;

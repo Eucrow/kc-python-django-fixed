@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{#{% block title %}#}
+{#    Crear postico#}
+{#{% endblock %}#}
+
+{% block body %}
+    <section class="container-section">
+        <div class="container-article_strait">
+            <div class="container-title">Crear nuevo artículo</div>
+                <form class="new-post-form" method="post">
+                    {% csrf_token %}
+                    <div>
+                        <input type="text" name="title" placeholder="title" required>
+                    </div>
+                    <div>
+                        <textarea name="introduction" placeholder="introduction" rows="2" required></textarea>
+                    </div>
+                    <div>
+                        <textarea name="content" placeholder="content" rows="8" required></textarea>
+                    </div>
+                    <div>
+                        <input type="text" name="url" placeholder="image url">
+                    </div>
+                    <div>
+                        <input type="date" id="publication_date" name="publication_date"  pattern="[0-9]{1,2}[-\/\\][0-9]{1,2}[-\/\\][0-9]{4}" placeholder="Fecha de publicación dd/mm/aaaa" required>
+                    </div>
+                    <div>
+                        <input type="time" name="publication_time" pattern="[0-9]{1,2}[:][0-9]{1,2}" placeholder="Hora de publicación mm:ss" required>
+                    </div>
+                    <div class="as-input">
+                        <span class="as-placeholder">Selecciona categorías:</span>
+                         <select name="categories" multiple size="3" required>
+                             {% for category in categories_list %}
+                                <option value="{{ category.id }}">{{ category.description }}</option>
+                             {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit">Crear artículo</button>
+                </form>
+                {%  if message %}
+                    <p>{{ message|safe }}</p> <!-- con el safe le estamos diciendo que message no contiene código malicioso -->
+                {%  endif %}
+            </div>
+    </section>
+{% endblock %}}

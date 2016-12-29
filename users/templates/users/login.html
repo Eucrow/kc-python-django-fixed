@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block body %}
+    <section class="container-section">
+        <div class="container-article_strait">
+            <div class="message_layer">
+                {{ error }}
+            </div>
+        <form class="login-form" method="post">
+            {% csrf_token %} <!--para la protección csrf que hace django-->
+            <div><input type="text" id="username" name="username" placeholder="Nombre de Usuario"></div>
+            <div><input type="password" id="pwd" name="pwd" placeholder="Password"></div>
+            <button type="submit">Login</button>
+        </form>
+        </div>
+    </section>
+{% endblock %}

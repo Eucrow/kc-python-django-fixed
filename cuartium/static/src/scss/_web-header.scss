@@ -1,0 +1,187 @@
+header{
+    position: fixed;
+    width:100%;
+    background-color: $color-blue;
+    top: 0px;
+    height: 4rem;
+    // line-height:50px;
+    @include if-is-tablet{
+        //height: $distance-header-tablet;
+    }
+    @include if-is-desktop{
+        max-width: $max-width-desktop;
+    }
+
+    .header-title{
+        padding: 20px 0 0 10px;
+        color: $color-green;
+        font-family: $secondary-font-family;
+        display: inline-block;
+        float:left;
+
+        a{
+            color: $color-green;
+            text-decoration: none;
+        }
+    }
+
+    .search {
+        display: inline-block;
+        float: right;
+        padding: 0px 5px 0 0;
+        // line-height: 40px;
+
+        @include if-is-tablet{
+            display: inline-block;
+            padding: 20px 10px 0 0;
+            float: right;
+        }
+
+        @include if-is-desktop{
+            display: inline-block;
+            padding: 0 10px 0 0;
+            float: right;
+        }
+
+        // button {
+        //     background-color: $color-blue;
+        //     border: none;
+        //     padding: 0px 0px;
+        //     text-decoration: none;
+        //     display: inline-block;
+        //     vertical-align: middle;
+        // }
+        // input{
+        //     height: 24px;
+        // }
+        //
+        // form>input.search-input{
+        //     margin: 0 0 5px 0;
+        //     max-width: 100px;
+        //     border: 0px;
+        // }
+    }
+}
+
+
+.open{
+    border: none;
+    background:none;
+    float: right;
+    width: 45px;
+    line-height:45px;
+    padding:22px 15px 0px 15px;
+    cursor:pointer;
+    outline:none;
+    z-index:10000000000000;
+    @include if-is-tablet{
+        display:none;
+    }
+}
+
+.close{
+    @extend .open;
+    cursor:pointer;
+    display: none;
+
+    z-index:10000000000000;
+    @include if-is-tablet{
+        display:none;
+    }
+}
+
+.menu{
+    z-index:1000000;
+    font-weight:500;
+    color: $color-white;
+    background:$color-blue;
+    position:fixed;
+    top: 4rem;
+    right: 0px;
+    text-align:right;
+    border-left:$color-blue 2px solid;
+    display: none;
+    padding-bottom: 10px;
+
+    @include if-is-tablet{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        line-height: 2.5rem;;
+        width: 100%;
+        font-size: $font-size-menu-tablet;
+        right:auto;
+        padding-bottom: 0px;
+        .themes{
+            text-align: left;
+        }
+        .identification{
+            text-align: right;
+        }
+    }
+
+    @include if-is-desktop{
+        max-width: $max-width-desktop;
+        right:auto;
+    }
+
+    ul {
+        list-style-type: none;
+        list-style-image: none;
+        font-family: $secondary-font-family;
+        @include if-is-tablet{
+            display: inline;
+            margin: 0px;
+        }
+    }
+    ul li {
+        display: block;
+        padding:5px 10px 5px 10px;
+        //border-bottom:$color-blue 1px solid;
+        @include if-is-tablet{
+            display: inline;
+            padding:5px 10px 0 10px;
+        }
+    }
+    li:hover{
+        // display: block;
+        color:$color-green;
+        //background:$color-white;
+        //padding:5px 10px 5px 10px;
+    }
+    li.menu-inverse:hover{
+        background: $color-blue;
+    }
+    a{
+        text-decoration:none;
+        color:$color-white;
+    }
+    a:hover{
+        text-decoration:none;
+        color:$color-white;
+    }
+}
+
+.icon-search {
+  @include sprite($icon-search);
+
+  &::after{
+      content: "\00a0";
+  }
+}
+
+.icon-menu-open {
+    @include sprite($icon-menu-open);
+
+    &::after{
+        content: "\00a0";
+    }
+}
+
+.icon-menu-close {
+  @include sprite($icon-menu-close);
+
+  &::after{
+      content: "\00a0";
+  }
+}

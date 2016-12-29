@@ -1,0 +1,49 @@
+.new-comment-form{
+    display: none;
+    width: 100%;
+    padding:20px 0px;
+    text-align: center;
+
+    input,
+    textarea{
+        padding: 5px;
+        margin: 5px;
+        background-color: $color-light-grey;
+        border-style: none;
+        width:300px;
+        font-family: $main-font-family
+    }
+
+    ::-webkit-input-placeholder {
+        font-size: $font-size-smallest;
+        color: $color-green;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+        font-size: $font-size-smallest;
+        color: $color-green;
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+        font-size: $font-size-smallest;
+        color: $color-green;
+    }
+
+    :-ms-input-placeholder {
+        font-size: $font-size-smallest;
+        color: $color-green;
+    }
+
+    button{
+        background-color: $color-light-grey;
+        border-style: solid;
+        border-width: 1px;
+        padding: 5px;
+
+        &:hover{
+            background-color: $color-white;
+        }
+
+    }
+
+}

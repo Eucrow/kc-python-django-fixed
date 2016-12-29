@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <section class="container-section">
+        {% if posts_list|length > 0 %}
+            {% for post in posts_list %}
+{#                <article class="container-article" id="1">#}
+{#                    <a href="/posts/{{ post.pk }}">#}
+{#                    <h2>{{ post.title }}</h2>#}
+{#                    </a>#}
+{#                    <img src="{{ post.url }}" alt="{{ post.title }}" title ="{{ post.title }}" height="640">#}
+{#                    <p>{{ post.introduction }}</p>#}
+{#                    <p>{{ post.owner }}</p>#}
+{#                </article>#}
+
+                <article class="container-article" id="{{ post.pk }}">
+                    <img class="article-picture" alt="{{ post.title }}" src="{{ post.url }}"
+{#                                                                 srcset="#}
+{#                                                                 dist/uploads/tomillo_1280.jpg 736w,#}
+{#                                                                 dist/uploads/tomillo_800.jpg 736w,#}
+{#                                                                 dist/uploads/tomillo_400.jpg 400w#}
+{#                                                                 "#}
+                    >
+                    <div class="article-title"><a href="/posts/{{ post.pk }}">{{ post.title }}</a></div>
+                    <div class="article-introduction">
+                        <p>{{ post.introduction }}</p>
+                    </div>
+                    <div class="article-social clearfix">
+                        <div class="article-social left">
+                            <div class="article-social-avatar icon-placeholder clearfix"></div>
+                        </div>
+                        <div class="article-social right">
+                            <div class="article-social-likes icon-heart" data-id="{{ post.pk }}"></div>
+                            <div class="article-social-comments"><a href="/posts/{{ post.pk }}#comments" class="number-of-comments"></a></div>
+                        </div>
+                        <div class="article-social center">
+                            <div class="article-social-name">{{ post.owner }}</div>
+                            <div class="article-social-fecha"><time datetime="{{ post.created_at }}">{{ post.created_at }} tiempo</time></div>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        {% else %}
+        <p>Únete a nosotros y se el primero en subir un postico</p>
+        {% endif %}
+    </section>
+{% endblock %}

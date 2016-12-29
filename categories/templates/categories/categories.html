@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+    List of categories
+{% endblock %}
+
+{% block body %}
+    <section class="container-section">
+        <div class="container-article_strait">
+
+        {% if categories_list|length > 0 %}
+            {% for cat in categories_list %}
+                <p>{{ cat.description }}</p>
+            {% endfor %}
+        {% else %}
+        <p>No hay ninguna categoría</p>
+        {% endif %}
+        </div>
+    </section>
+
+{% endblock %}

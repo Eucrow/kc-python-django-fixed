@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Registro de nuevo usuario
+{% endblock %}
+
+{% block body %}
+    <section class="container-section">
+        <div class="container-article_strait">
+            <div class="message_layer">
+                {% if message %}
+                    {{ message }}
+                {% endif %}
+            </div>
+        <form class="signup-form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Signup</button>
+        </form>
+        </div>
+    </section>
+{% endblock %}

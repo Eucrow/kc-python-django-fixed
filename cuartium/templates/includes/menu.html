@@ -1,0 +1,25 @@
+<button class="open"><div class="icon icon-menu-open"></div></button>
+        <button class="close"><div class="icon icon-menu-close"></div></button>
+        <div class="search">
+            <form class ="search-form">
+                <input class ="search-input" type="text" name="search" id="search-input" placeholder="search">
+                <button for="search-input"><div class = "icon icon-search"></div></button>
+            </form>
+        </div>
+        <div class="menu">
+            <ul class="themes">
+                {% load categories_extras %}
+                {%  list_categories categories %}
+            </ul>
+            <ul class="identification">
+                <a href="/blogs"><li class="menu-inverse">blogs</li></a>
+                {% if user.is_authenticated %} <!-- si el usuario está autenticado ¡¡no hace falta poner el ()!!-->
+                    <a href="/logout"><li class="menu-inverse">logout</li></a>
+                    <a href="/newpost"><li class="menu-inverse">crear articulo</li></a>
+                {% else %}
+                    <a href="/login"><li class="menu-inverse">login</li></a>
+                    <a href="/signup"><li class="menu-inverse">signup</li></a>
+                {% endif %}
+                <!-- <li class="menu-inverse identification"><a href="#">Login</a> | <a href="#">Register</a></li> -->
+            </ul>
+        </div>

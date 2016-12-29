@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{#{% block title %}#}
+{#    List of blogs#}
+{#{% endblock %}#}
+
+{% block body %}
+    <section class="container-section">
+        <div class="container-article_strait">
+            <div class="container-title">Blogs disponibles en Cuartium:</div>
+            {% if blog_list|length > 0 %}
+                <ul>
+                {% for bl in blog_list%}
+                    <li><a href="/blogs/{{ bl }}.html">Blog de {{ bl }}</a></li>
+                {% endfor %}
+                </ul>
+            {% else %}
+            <p>No hay ningún blog</p>
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock %}
