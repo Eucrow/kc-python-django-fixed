@@ -14,7 +14,10 @@ from categories.models import Category
 from posts.forms import PostCreationForm
 from posts.models import Post
 
+import pytz
 from django.urls import reverse
+
+from datetime import datetime
 
 
 class Home(View):
@@ -26,12 +29,9 @@ class Home(View):
         Returns: objeto HttpResponse con los datos de la respuesta
 
         """
-        # recupera todos los posts de la base de datos
-        date_now = strftime("%Y-%m-%d", localtime())
-        time_now = strftime("%H:%M:%S", localtime())
-        posts = Post.objects.all().filter(
-            Q(publication_date=date_now, publication_time__lte=time_now) | Q(publication_date__lt=date_now)).order_by(
-            '-created_at')
+
+        posts = PostListQuerySet.get_posts_by_user(request.user)
+
         context = {'posts_list': posts}
         return render(request, 'posts/home.html', context)
 
@@ -51,12 +51,13 @@ class PostListQuerySet(object):  # crea la queryset con el listado de artículos
         if not user.is_authenticated():  # si no está autenticado, puede ver sólo aquellos ya publicados
             possible_posts = possible_posts.filter(
                 Q(publication_date=date_now, publication_time__lte=time_now) | Q(publication_date__lt=date_now))
-        elif not user.is_superuser:  # si está autenticado y no es superusuario ve todos los publicados y los suyos no publicados
+        elif user.is_authenticated() and not user.is_superuser:  # si está autenticado y no es superusuario ve todos los publicados y los suyos no publicados
             possible_posts = possible_posts.filter(
-                Q(publication_date=date_now, publication_time__lte=time_now) | Q(publication_date__lt=date_now) | Q(
-                    owner=user))
-        # y si está autenticado y es superusuario, entonces devuelverá todos
-        return possible_posts  # possible_post es una queryset
+                Q(publication_date=date_now, publication_time__lte=time_now) | Q(owner=user))
+        elif user.is_authenticated() and user.is_superuser:  # y si está autenticado y es superusuario, entonces devuelverá todos
+            possible_posts = Post.objects.all()
+
+        return possible_posts.order_by('-publication_at')  # possible_post es una queryset
 
 
 class PostDetail(View):
@@ -66,12 +67,9 @@ class PostDetail(View):
         :param request: objeto httpRequest con los datos de la petición
         :return: objeto httpResponse con los datos de la respuesta
         """
-        date_now = strftime("%Y-%m-%d", localtime())
-        time_now = strftime("%H:%M:%S", localtime())
 
-        possible_post = Post.objects.all().filter(
-            Q(publication_date=date_now, publication_time__lte=time_now, pk=pk) | Q(publication_date__lt=date_now,
-                                                                                    pk=pk))
+        possible_post = PostListQuerySet.get_posts_by_user(request.user).filter(pk=pk)
+
         if len(possible_post) == 0:
             return HttpResponseNotFound("Ese post que buscas no existe")
         elif len(possible_post) > 1:
@@ -111,13 +109,21 @@ class PostCreationView(View):
         post_with_user = Post(owner=request.user)
         post_form = PostCreationForm(request.POST, instance=post_with_user)
 
-        if post_form.is_valid():
-            new_post = post_form.save()
-            # post_form = PostCreationForm()  # vaciamos el formulario
-            message = 'Artículo creado satisfactoriamente <a href="{0}">Ver artículo</a>'.format(
-                reverse('post_detail', args=[new_post.pk]))
+        complete_date = request.POST.get("publication_date") + " " + request.POST.get("publication_time")
 
-        context = {'form': post_form, 'message': message}
-        # return render(request, 'posts/post_creation.html', context)
+        validate_date = datetime.strptime(complete_date, "%Y-%m-%d %H:%M")
+
+        # Add timezone (avoid warning):
+        utc = pytz.utc
+        validate_date_utc = utc.localize(validate_date)
+
+        if post_form.is_valid():
+            post_form.instance.publication_at = validate_date_utc
+            post_form.save()
+            # post_form = PostCreationForm()  # vaciamos el formulario
+        else:
+            context = {'form': post_form, 'message': message}
+            return render(request, 'posts/post_creation.html', context)
+
         messages.add_message(request, messages.INFO, "Artículo creado satisfactoriamente")
-        return redirect(reverse('post_detail', args=[new_post.pk]))
+        return redirect(reverse('post_detail', args=[post_form.instance.pk]))

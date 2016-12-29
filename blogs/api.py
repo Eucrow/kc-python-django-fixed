@@ -1,10 +1,9 @@
 from django.contrib.auth.models import User
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListAPIView
 from blogs.serializers import BlogSerializer
 
 
-
-class BlogListAPI(ListCreateAPIView):
+class BlogListAPI(ListAPIView):
     """
     Endpoint de listado de blogs
     """
