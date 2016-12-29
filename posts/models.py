@@ -15,6 +15,7 @@ class Post(models.Model):
     modified_at = models.DateTimeField(auto_now=True)
     publication_date = models.DateField()
     publication_time = models.TimeField()
+    publication_at = models.DateTimeField(null=True, blank=True)
     categories = models.ManyToManyField(Category)
 
     def __str__(self):

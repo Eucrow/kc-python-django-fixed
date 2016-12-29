@@ -1,9 +1,10 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
-from posts.models import Post
 from posts.permissions import PostPermission
 from posts.serializers import PostSerializer, PostListSerializer
 from posts.views import PostListQuerySet
+
+from rest_framework.filters import OrderingFilter, SearchFilter
 
 
 # TODO: convert this in a ViewSet (video Día 6 - Sesión 2 Autorización, Autenticación, Filtrado de da.flv, 1:25
@@ -15,55 +16,25 @@ class PostListAPI(ListCreateAPIView):
     # permission_classes = (IsAuthenticatedOrReadOnly,)
     permission_classes = (PostPermission,)
 
-    # TODO: move order_results to another file...
-    def order_results(self, request, *args):
-        '''
-        Order the queryset by fields
-        :param request: request to order
-        :param args: fields used to order the queryset
-        :return: queryset already ordered
-        '''
+    # django filter backends:
+    filter_backends = (OrderingFilter, SearchFilter)
+    ordering_fields = ('title', 'publication_at')
+    search_fields = ('title', 'content')
 
-        fields = []
-
-        for a in args:
-            to_order = self.request.query_params.get(a, None)
-            if to_order == "asc":
-                by_field = a
-                fields.append(by_field)
-            elif to_order == "des":
-                by_field = "-" + a
-                fields.append(by_field)
-            else:
-                by_field = None
-
-        if fields is not None:
-            queryset = request.order_by(*fields)
-            # para entender *fields: http://agiliq.com/blog/2012/06/understanding-args-and-kwargs/
-
-        return queryset
 
     def get_queryset(self):
 
         posts_by_user = PostListQuerySet.get_posts_by_user(user=self.request.user)
         queryset = posts_by_user
 
-        # TODO: send to a function
-        # filter by search
-        search = self.request.query_params.get('search', None)
-
-        if search is not None:
-            queryset = posts_by_user.filter(title__icontains=search)
-        #
-
-        queryset = self.order_results(queryset, "title", "publication_date")
-
         return queryset
+
 
     # sobreescribimos el método get_serializer_class para que haga lo que nosotros deseamos,
     # en este caso devuelve PostSerializer si el método es POST o PostListSerializer si no.
     def get_serializer_class(self):
         return PostSerializer if self.request.method == 'POST' else PostListSerializer
+
 
     def perform_create(self, serializer):  # obligamos a que se guarde el post con el usuario que
         # está autenticado cuando se está creando uno nuevo

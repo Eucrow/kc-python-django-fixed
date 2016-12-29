@@ -47,8 +47,7 @@ moment.updateLocale('es', {
 
     function refresh(time){
         // publicationTime = moment($(time).attr("datetime"), "YYYY-MM-DD HH:mm:ss");
-        publicationTime = moment($(time).attr("datetime"), "MMM. D, YYYY, h:mm a ");
-        console.log(publicationTime);
+        publicationTime = moment($(time).attr("datetime"), "MMM. D, YYYY, h:mm a");
         nowTime = moment();
         timeToNow = nowTime.diff(publicationTime, 'seconds'); // tiempo que hay
         // entre que se publica el artículo hasta el momento en que se refresca la pantalla
