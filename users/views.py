@@ -1,7 +1,7 @@
-from django.contrib.auth import authenticate, login as django_login, logout as django_logout
+from django.contrib.auth import authenticate, login as django_login, logout as django_logout, update_session_auth_hash
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
-from django.utils.safestring import mark_safe
 from django.views import View
 from django.views.generic import TemplateView
 
@@ -81,7 +81,7 @@ class SignUpView(View):
             user.first_name = user_form.cleaned_data.get('first_name')
             user.last_name = user_form.cleaned_data.get('last_name')
             user.email = user_form.cleaned_data.get('email')
-            user.password = user_form.cleaned_data.get('password1')
+            user.set_password(user_form.cleaned_data.get('password1'))
 
             user.save()
 

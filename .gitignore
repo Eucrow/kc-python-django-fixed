@@ -1,5 +1,6 @@
 #nodejs files
 /node_modules
+/cuartium/static/node_modules
 
 #sparrest
 server.py

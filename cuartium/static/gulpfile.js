@@ -28,7 +28,8 @@ gulp.task("default", ["concat-js", "compile-sass", "spritesheet"], function(){
         //server: "./",//levanta el servidor web en la carpeta actual
         proxy: "127.0.0.1:8000",    // actúa como proxy enviado las peticiones a
                                     //sparrest que está en el puerto 8000
-        browser: "chrome"
+        browser: "firefox"
+        //browser: "chrome"
     });
     // observa cambios en archivos SASS y ejecuta la tarea de compilación
     gulp.watch("src/scss/*.scss", ["compile-sass"]);

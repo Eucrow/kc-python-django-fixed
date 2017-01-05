@@ -12,10 +12,10 @@
                     {{ message }}
                 {% endif %}
             </div>
-        <form class="signup-form" method="post">
+        <form class="signup-form" method="post" novalidate>
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Signup</button>
+            <button>Signup</button>
         </form>
         </div>
     </section>
